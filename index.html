@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Project Gallery</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #8eaae2; font-family: 'Arial', sans-serif; }
+        .sidebar { background-color: #1a237e; color: #fff; height: 200vh; padding: 20px; box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2); }
+        .sidebar h2 { border-bottom: 3px solid #64b5f6; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
+        .project-title { cursor: pointer; color: #64b5f6; margin-bottom: 12px; padding: 10px 15px; border-radius: 8px; background-color: rgba(255, 255, 255, 0.1); transition: all 0.3s ease-in-out; }
+        .project-title:hover, .project-title.active { background-color: #64b5f6; color: #1a237e; transform: scale(1.05); box-shadow: 0 4px 15px rgba(100, 181, 246, 0.6); }
+        .project-content { padding: 40px; background-color: #fff; border-radius: 16px; box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15); margin: 40px; }
+        #project-display h3 { color: #444b99; border-bottom: 3px solid #64b5f6; padding-bottom: 10px; margin-bottom: 20px; }
+        #project-display p { line-height: 1.8; color: #333; }
+        #search-bar { margin-bottom: 20px; width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #64b5f6; background-color: #e3f2fd; color: #1a237e; transition: border 0.3s ease-in-out; }
+        #search-bar:focus { outline: none; border: 2px solid #1a237e; }
+        iframe { width: 100%; height: 600px; border: 2px solid #64b5f6; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <h2>Class Works</h2>
+                <input type="text" id="search-bar" placeholder="Search projects...">
+                <div id="project-list"></div>
+            </div>
+            <div class="col-md-9">
+                <div class="project-content" id="project-display">
+                    <h3>Welcome to the Project Gallery</h3>
+                    <p>Select a project from the left to view details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadProjects() {
+            const response = await fetch('data.json');
+            const projects = await response.json();
+
+            const projectList = document.getElementById("project-list");
+            const projectDisplay = document.getElementById("project-display");
+            const searchBar = document.getElementById("search-bar");
+
+            function displayProjects(filteredProjects) {
+                projectList.innerHTML = "";
+                filteredProjects.forEach(project => {
+                    const projectItem = document.createElement("div");
+                    projectItem.className = "project-title";
+                    projectItem.innerHTML = project.title;
+
+                    projectItem.onclick = () => {
+                        projectDisplay.innerHTML = `
+                            <div style="background-color:black">
+                            <h2 style="text-align:center;color:white">${project.title}</h2>
+                            <p style="text-align:center;color:white">${project.description}</p>
+                            </div>
+                            <iframe src="${project.link}" frameborder="0"></iframe>
+                        `;
+                        document.querySelectorAll(".project-title").forEach(item => item.classList.remove('active'));
+                        projectItem.classList.add('active');
+                    };
+
+                    projectList.appendChild(projectItem);
+                });
+            }
+
+            searchBar.addEventListener('input', (e) => {
+                const searchValue = e.target.value.toLowerCase();
+                const filteredProjects = projects.filter(project => 
+                    project.title.toLowerCase().includes(searchValue)
+                );
+                displayProjects(filteredProjects);
+            });
+
+            displayProjects(projects);
+        }
+
+        loadProjects();
+    </script>
+</body>
+</html>

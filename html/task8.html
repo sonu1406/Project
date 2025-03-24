@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            margin-left: 60px;
+            margin-top: 20px;
+            justify-items: center;
+        }
+        #user_input{
+            font-size: 20px;
+        }
+    </style>
+   
+   
+</head>
+<body>
+    <h3>Printing Stars Using Random Colours</h3>
+    <input id="user_input" placeholder="Enter Size" onkeyup="gen_shape();" />
+    <div id="content"></div>
+    <script>
+        function random(){
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        return `rgb(${r}, ${g}, ${b})`;
+        }
+        function gen_shape(){
+        
+        let n = parseInt(document.getElementById("user_input").value);
+        let text=""
+        for (let i = 0; i <= n; i++) {
+            for(let j=0;j<i;j++){
+                text+="* ";
+            }
+            text+="<br>";
+            
+        }
+        document.getElementById('content').innerHTML=text;
+        document.getElementById('content').style.color=random();
+
+    }
+        </script>
+</body>
+</html>

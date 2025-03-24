@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 100px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <h2>Random Number Generator</h2>
+   
+    <input id="numA" placeholder="Min">
+
+    <input  id="numB" placeholder="Max">
+    <br><br>
+    <button onclick="generateRandom()">Generate</button>
+
+    <p id="result"></p>
+
+    <script>
+        function random(){
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+            }
+
+            function vanishOutput() {
+                let body = document.getElementById("mainBody");
+
+               
+                setTimeout(() => {
+                    body.style.opacity = "0"; 
+                }, 5000);
+    
+                setTimeout(() => {
+                    body.style.opacity = "1"; 
+                }, 2000);
+            }
+
+        function generateRandom() {
+            let a = parseInt(document.getElementById("numA").value);
+            let b = parseInt(document.getElementById("numB").value);
+            
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById("result").innerText = "Please enter valid numbers.";
+                vanishOutput();
+                return;
+            }
+
+            if (a > b) {
+                document.getElementById("result").innerText = "Max Number should be less than or equal to Min number.";
+                vanishOutput();
+                return;
+            }
+
+            let randomNum = Math.floor(Math.random() * (b - a)) + a;
+            document.getElementById("result").innerText = "Random Number: " + randomNum;
+            document.getElementById('result').style.color=random();
+            vanishOutput();
+
+    
+        }
+    </script>
+
+</body>
+</html>

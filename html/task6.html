@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .nav button {
+            text-decoration: none;
+            padding: 10px;
+            color:black;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .nav button:hover {
+            color: #f4a261;
+        }
+        #sub-text{
+           color: #f4a261;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+        }
+        .content {
+            max-width: 50%;
+        }
+        .title-box {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .description-box {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #333;
+            color: white;
+        }
+        .image-box {
+            width: 40%;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            border-radius: 10px;
+        }
+        .footer {
+            display: none;
+            background-color: #333;
+            color: white;
+            text-align: left;
+            padding: 20px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-buttons {
+            display: flex;
+            justify-content: left;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .footer button {
+            background-color: #f4a261;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .footer button:hover {
+            background-color: #e76f51;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <img src="logo.png" alt="Company Logo">
+        <span>Ashreeth's Venture</span>
+    </div>
+    <nav class="nav">
+        <button href="#">Home</button>
+        <button href="#">About</button>
+        <button href="#">Services</button>
+        <button href="#">Portfolio</button>
+        <button href="#">Contact</button>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="content">
+        <div class="title-box">
+            <h1>Planning to Buy a House?</h1>
+            <h2 id="sub_text">-you are in the right place</h2>
+        </div>
+        <div class="description-box">
+            <p>A house venture refers to a business or investment focused on real estate, including buying, selling, developing, or managing residential properties. It can involve constructing new homes, renovating existing ones, or managing rental properties for long-term income. House ventures aim to create comfortable, functional, and sustainable living spaces while generating profit through property appreciation or rental income. Whether it's a real estate agency, a home-flipping project, or a property management firm, house ventures play a vital role in shaping communities and providing housing solutions for various needs.</p>
+        </div>
+        <div class="buttons">
+            <a href="#" class="btn">Ventures</a>
+            <a href="#" class="btn">Prices</a>
+        </div>
+    </div>
+    <div class="image-box">
+        <p>Space for something visual (e.g., product image)</p>
+    </div>
+</div>
+
+
+<footer class="footer" id="footer">
+    <p>&copy; 2025 Ashreeth's Venture. All rights reserved.</p>
+    <div class="footer-buttons">
+        <button>Privacy Policy</button>
+        <button>Terms of Service</button>
+        <button>Support</button>
+        <button>Contact Us</button>
+    </div>
+</footer>
+
+<script>
+    function toggleFooter() {
+        let footer = document.getElementById('footer');
+        if (document.body.scrollHeight > window.innerHeight) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                footer.style.display = 'block';
+            } else {
+                footer.style.display = 'none';
+            }
+        } else {
+            footer.style.display = 'block';
+        }
+    }
+
+    window.addEventListener('scroll', toggleFooter);
+    window.addEventListener('load', toggleFooter);
+</script>
+</body>
+</html>

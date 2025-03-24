@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee Info</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1{
+            background-color: bisque;
+            display: inline-block;
+            padding: 20px;
+        }
+        #container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 35%;
+            margin: auto;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+        }
+        button {
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        .insert-btn {
+            background-color: lightgreen;
+        }
+        .clear-btn {
+            background-color: lightcoral;
+        }
+        #info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>EMPLOYEE PERSONAL INFORMATION</h1>
+    <div id="container">
+        <input id="name" placeholder="Enter Name" />
+        <input id="dob" placeholder="Enter Date of Birth" />
+        <input id="email" placeholder="Enter Email" />
+        <input id="phone" placeholder="Enter Phone Number" />
+        <input id="position" placeholder="Enter Position" />
+        <input id="department" placeholder="Enter Department" />
+        <button class="insert-btn" onclick="insert()">Insert Info</button>
+        <button class="clear-btn" onclick="clearInputs()">Clear Inputs</button>
+        <button class="insert-btn" onclick="displayEmployees()">Show All</button>
+        <button class="clear-btn" onclick="clearDisplay()">Clear Display</button>
+        <input id="search" placeholder="Search by Name" onkeyup="searchEmployee()" />
+    </div>
+
+    <div id="info"></div>
+
+    <script>
+        let employees = [];
+
+        function insert() {
+            let name = document.getElementById("name").value;
+            let dob = document.getElementById("dob").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let position = document.getElementById("position").value;
+            let department = document.getElementById("department").value;
+
+            if (name && dob && email && phone && position && department) {
+                let employee = {
+                    name: name,
+                    dob: dob,
+                    email: email,
+                    phone: phone,
+                    position: position,
+                    department: department,
+                    description: function () {
+                        return `<p>Name: ${this.name} | Born: ${this.dob} | Email: ${this.email} | Phone: ${this.phone} | Position: ${this.position} | Department: ${this.department}</p>`;
+                    }
+                };
+                employees.push(employee);
+                clearInputs();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+
+        function displayEmployees() {
+            let infoDiv = document.getElementById("info");
+            infoDiv.innerHTML = "<h2>Employee List</h2>";
+            employees.forEach(employee => {
+                infoDiv.innerHTML += employee.description();
+            });
+        }
+
+        function searchEmployee() {
+            let query = document.getElementById("search").value.toLowerCase();
+            let infoDiv = document.getElementById("info");
+            infoDiv.innerHTML = "<h2>Search Results</h2>";
+            let filteredEmployees = employees.filter(employee => employee.name.toLowerCase().includes(query));
+            if (filteredEmployees.length > 0) {
+                filteredEmployees.forEach(employee => {
+                    infoDiv.innerHTML += employee.description();
+                });
+            } else {
+                infoDiv.innerHTML += "<p>No employees found.</p>";
+            }
+        }
+
+        function clearInputs() {
+            document.getElementById("name").value = "";
+            document.getElementById("dob").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("position").value = "";
+            document.getElementById("department").value = "";
+        }
+
+        function clearDisplay() {
+            document.getElementById("info").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

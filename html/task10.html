@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            transition: opacity 1s ease-in-out; 
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            width: 120px;
+            text-align: center;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body id="mainBody">
+
+    <h2>Random Number Generator</h2>
+    
+    <input type="number" id="min" placeholder="Enter Min">
+    <input type="number" id="max" placeholder="Enter Max">
+    
+    <br><br>
+    <button onclick="generateRandom()">Generate</button>
+
+    <p id="result"></p>
+
+    <script>
+        function generateRandom() {
+            let min = parseInt(document.getElementById("min").value);
+            let max = parseInt(document.getElementById("max").value);
+            let resultElement = document.getElementById("result");
+
+            if (isNaN(min) || isNaN(max)) {
+                resultElement.innerText = "Please enter valid numbers!";
+                hideAndShowPage();
+                return;
+            }
+
+            if (min > max) {
+                resultElement.innerText = "Min should be less than or equal to Max.";
+                hideAndShowPage();
+                return;
+            }
+
+          
+            let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+            resultElement.innerText = `Random Number: ${randomNum}`;
+
+           
+            hideAndShowPage();
+        }
+
+        function hideAndShowPage() {
+            let body = document.getElementById("mainBody");
+
+            
+            setTimeout(() => {
+                body.style.opacity = "0"; 
+            }, 5000);
+
+           
+            setTimeout(() => {
+                body.style.opacity = "1"; 
+            }, 10000);
+        }
+    </script>
+
+</body>
+</html>

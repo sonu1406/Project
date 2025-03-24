@@ -1,0 +1,72 @@
+[
+    {
+        "title": "Project 1 - Basic HTML",
+        "description": "A simple project to practice fundamental HTML elements and page structure.",
+        "link": "html/task1.html"
+    },
+    {
+        "title": "Project 2 - Grade Calculator",
+        "description": "A tool to calculate grades using basic CSS styling and layout techniques.",
+        "link": "html/task2.html"
+    },
+    {
+        "title": "Project 3 - Welcome Page",
+        "description": "A dynamic welcome page introducing JavaScript for user interaction.",
+        "link": "html/task3.html"
+    },
+    {
+        "title": "Project 4 - Calculator",
+        "description": "A functional calculator built with responsive design principles.",
+        "link": "html/task4.html"
+    },
+    {
+        "title": "Project 5 - Creative Site",
+        "description": "A visually appealing site using Bootstrap for rapid and creative UI design.",
+        "link": "html/task5.html"
+    },
+    {
+        "title": "Project 6 - Demo Site",
+        "description": "A demonstration site featuring form validation with JavaScript.",
+        "link": "html/task6.html"
+    },
+    {
+        "title": "Project 7 - Call Stack",
+        "description": "A project exploring JavaScript call stack concepts with API data display.",
+        "link": "html/task7.html"
+    },
+    {
+        "title": "Project 8 - Printing Stars",
+        "description": "A fun exercise to print star patterns using local storage for persistence.",
+        "link": "html/task8.html"
+    },
+    {
+        "title": "Project 9 - Range Sum",
+        "description": "An interactive tool to calculate the sum of a range, styled as a gallery.",
+        "link": "html/task9.html"
+    },
+    {
+        "title": "Project 10 - Random Number",
+        "description": "A dynamic random number generator with an animated navigation bar.",
+        "link": "html/task10.html"
+    },
+    {
+        "title": "Project 11 - Personal Information",
+        "description": "A form to collect and display personal info using modal popups.",
+        "link": "html/task11.html"
+    },
+    {
+        "title": "Project 12 - Hover",
+        "description": "An image slider with hover effects for interactive transitions.",
+        "link": "html/task12.html"
+    },
+    {
+        "title": "Project 13 - Bootstrap Forms",
+        "description": "A weather app with Bootstrap forms to input location data.",
+        "link": "html/task13.html"
+    },
+    {
+        "title": "Project 14 - Age Calculator",
+        "description": "A task manager-style app to calculate age based on user input.",
+        "link": "html/task14.html"
+    }
+]

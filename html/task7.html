@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Stack Task Manager</title>
+    <style>
+        body 
+        { 
+            justify-items: center;
+            padding: 20px;
+        }
+        button 
+        {
+             margin: 5px; padding: 8px 12px; cursor: pointer; }
+        ul { list-style-type: none; padding: 0; position: relative; }
+        li { 
+            padding: 10px; 
+            background: #f4f4f4; 
+            margin: 5px 0; 
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            opacity: 1;
+        }
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+    </style>
+</head>
+<body>
+    <h2>Call Stack</h2>
+    <input type="text" id="taskInput" placeholder="Enter task...">
+    <button onclick="addTask()">Add Task</button>
+    <button onclick="undoTask()">Undo Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        let taskStack = [];
+        
+        function addTask() {
+            let taskInput = document.getElementById('taskInput');
+            let taskText = taskInput.value.trim();
+            if (taskText === "") return;
+            
+            taskStack.push(taskText);
+            renderTasks();
+            taskInput.value = "";
+        }
+
+        function undoTask() {
+            if (taskStack.length > 0) {
+                let taskList = document.getElementById('taskList');
+                let lastTask = taskList.lastElementChild;
+                if (lastTask) {
+                    lastTask.classList.add('fade-out');
+                    setTimeout(() => {
+                        taskStack.pop();
+                        renderTasks();
+                    }, 300);
+                }
+            }
+        }
+
+        function renderTasks() {
+            let taskList = document.getElementById('taskList');
+            taskList.innerHTML = "";
+            taskStack.slice().reverse().forEach((task, index) => {
+                let li = document.createElement('li');
+                li.textContent = task;
+                li.classList.add('fade-in');
+                taskList.appendChild(li);
+                setTimeout(() => li.classList.remove('fade-in'), 300);
+            });
+        }
+    </script>
+</body>
+</html>
